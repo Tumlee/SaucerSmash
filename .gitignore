@@ -1,0 +1,6 @@
+.dub/
+dub.selections.json
+
+bin/saucersmash
+bin/saucersmash.exe
+

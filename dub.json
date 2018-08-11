@@ -1,0 +1,10 @@
+{
+	"name": "saucersmash",
+	"targetPath": "bin",
+	"description": "A game by Tumlee",
+	"copyright": "Copyright © 2014, tumlee",
+	"authors": ["tumlee"],
+	"dependencies": {
+	    "derelict-sdl2":"3.1.0-alpha.4",
+	},
+}
