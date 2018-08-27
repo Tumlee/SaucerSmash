@@ -53,6 +53,11 @@ T readDatum(T)(File file)
     return retVal;
 }
 
+//This identifier is used to determine if an SSR (SaucerSmash recording) is
+//compatible with the current version of SaucerSmash. Any time there is a breaking change
+//(ie. one that makes a change to the gameplay), this constant should be incremented as well.
+enum int ssrVersion = 3;
+
 class GameRecorder
 {
     PlayerPoll[] polls;
@@ -148,7 +153,7 @@ class GameRecorder
         }
 
         file.write("SSR");
-        file.writeDatum(3);
+        file.writeDatum(ssrVersion);
         file.writeDatum(playerTeam);
         file.writeDatum(enemyTeam);
         file.writeDatum(cast(ulong) polls.length);
@@ -209,7 +214,7 @@ class GameRecorder
 
         int ssrVersion = file.readDatum!int;
 
-        if(ssrVersion != 3)
+        if(ssrVersion != ssrVersion)
             throw new Exception("Replay is from the wrong version of SaucerSmash.");
 
         playerTeam = file.readDatum!int;
