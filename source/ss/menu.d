@@ -36,6 +36,10 @@ int chosenReplay;
 string menuMessage;
 int menuMessageTimer;
 
+//Grace period the prevent the menu from instantly reacting to input
+//after setting a keybind. Prevents issues when binding the left mouse.
+int menuInputGracePeriod = 0;
+
 class Menu
 {
     MenuItem[] items;
@@ -89,7 +93,7 @@ class MenuItem
         {
             textColor = mouseIn(y) ? Pixel32(255, 255, 255) : Pixel32(160, 160, 160);
             
-            if(mouseIn(y) && mouse[SDL_BUTTON_LEFT].isFresh)
+            if(mouseIn(y) && mouse[SDL_BUTTON_LEFT].isFresh && !menuInputGracePeriod)
                 doAction();
         }
             
@@ -487,6 +491,9 @@ void runMenu()
 {
     static int menuTick = 0;
     menuTick++;
+
+    if(menuInputGracePeriod != 0)
+        menuInputGracePeriod--;
     
     tickMenuMessage();
 
@@ -519,6 +526,8 @@ void rebindListener(KeyBind newBind)
     *(chosenBind.bind) = newBind;
     chosenBind = null;
     inputList.unsetListener();
+
+    menuInputGracePeriod = 5;
 }
 
 bool menuActive()
