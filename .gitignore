@@ -3,4 +3,4 @@ dub.selections.json
 
 bin/saucersmash
 bin/saucersmash.exe
-
+bin/*.dll
