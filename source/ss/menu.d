@@ -212,11 +212,16 @@ class MenuBoolSetting : MenuItem
 {
     string name;
     bool* setting;
+
+    //Some settings require some extra code to be executed on toggle.
+    //An example of this would be the Fullscreen setting.
+    void function(bool) extraEffect;
     
-    this(string newName, bool* newSetting)
+    this(string newName, bool* newSetting, void function(bool) extra = null)
     {
         name = newName;
         setting = newSetting;
+        extraEffect = extra;
     }
     
     override string text()
@@ -232,6 +237,9 @@ class MenuBoolSetting : MenuItem
     override void doAction()
     {   
         *setting = !*setting;
+
+        if(extraEffect !is null)
+            extraEffect(*setting);
     }
 }
 
@@ -439,6 +447,11 @@ void tickMenuMessage()
     }
 }
 
+void toggleFullscreen(bool isFullscreen)
+{
+    SDL_SetWindowFullscreen(window, isFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+}
+
 void initMenus()
 {
     mainMenu = new Menu("SaucerSmash", 150, 200);
@@ -458,7 +471,7 @@ void initMenus()
     settingsMenu.items ~= new MenuKeybind("Overdrive", &dashKey);
     settingsMenu.items ~= new MenuKeybind("Targeted overdrive", &aimDashKey);
     settingsMenu.items ~= new MenuKeybind("Fire", &fireKey);
-    settingsMenu.items ~= new MenuBoolSetting("Fullscreen mode", &menuFullscreen);
+    settingsMenu.items ~= new MenuBoolSetting("Fullscreen mode", &menuFullscreen, &toggleFullscreen);
     settingsMenu.items ~= new MenuBoolSetting("Play ingame music", &menuPlayMusic);
     settingsMenu.items ~= new MenuBack;
     

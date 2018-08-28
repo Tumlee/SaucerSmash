@@ -89,6 +89,10 @@ class GameLoop
                 
                 //Flip the display.
                 SDL_RenderPresent(renderer);
+
+                //Clear it afterwards. This prevents issues where leftover junk
+                //can get stuck off the boundaries of the display in Fullscreen mode.
+                SDL_RenderClear(renderer);
             }
             else
             {
