@@ -453,7 +453,7 @@ void tickMenuMessage()
 
 void toggleFullscreen(bool isFullscreen)
 {
-    SDL_SetWindowFullscreen(window, isFullscreen ? osSpecificFullscreenFlag : 0);
+    SDL_SetWindowFullscreen(window, isFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
 }
 
 void initMenus()
