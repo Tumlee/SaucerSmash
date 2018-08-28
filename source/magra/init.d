@@ -55,6 +55,8 @@ class InitSettings
     //====================================================
     void initializeGraphics()
     {
+        canvas = new Canvas;
+    
         auto windowFlags = SDL_WINDOW_OPENGL;
         
         if(fullscreen)
@@ -120,5 +122,8 @@ class InitSettings
         initializeSound();
         initializeGraphics();
         initializeInput();
+       
+        actors = new ActorList;
+        gameLoop = new GameLoop;
     }
 }

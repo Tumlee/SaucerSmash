@@ -31,13 +31,3 @@ else
 {
     enum int osSpecificFullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
 }
-
-//================================
-//Initialize global Magra objects.
-//================================
-static this()
-{
-    canvas = new Canvas;
-    actors = new ActorList;
-    gameLoop = new GameLoop;
-}
