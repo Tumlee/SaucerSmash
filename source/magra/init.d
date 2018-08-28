@@ -58,7 +58,7 @@ class InitSettings
         auto windowFlags = SDL_WINDOW_OPENGL;
         
         if(fullscreen)
-            windowFlags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+            windowFlags |= osSpecificFullscreenFlag;
         
         //Create the SDL window and renderer.
         window = SDL_CreateWindow(  windowTitle.toStringz,
