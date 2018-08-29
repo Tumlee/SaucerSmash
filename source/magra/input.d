@@ -1,5 +1,6 @@
 module magra.input;
 
+import magra.video;
 import derelict.sdl2.sdl;
 import std.conv;
 import std.string;
@@ -179,6 +180,30 @@ class Mouse : InputDevice
             
             accRelx = event.motion.xrel;
             accRely = event.motion.yrel;
+
+            //Because the borderless windowed mode allows the mouse cursor to escape
+            //into the black letterbox bars, we must forcibly warp the cursor back into the play area.
+            //For some reason beyond my understanding, SDL2 uses the logical coordinate system when
+            //reporting the mouse cursor position, but uses actual screen coordinates when warping
+            //the mouse cursor, so we have to scale these coordinates manually.
+            if(SDL_GetWindowGrab(window) == true)
+            {
+                //This is what SDL has scaled screen width to in fullscreen.
+                int scaledScreenwidth = logicalScreenwidth * actualScreenheight / logicalScreenheight;
+                int blackBarWidth = (actualScreenwidth - scaledScreenwidth) / 2;
+                int scaledMouseY = (y * actualScreenheight) / logicalScreenheight;
+
+                if(x < 0)
+                {
+                    int scaledMouseX = blackBarWidth;
+                    SDL_WarpMouseInWindow(window, scaledMouseX, scaledMouseY);
+                }
+                else if(x >= logicalScreenwidth)
+                {
+                    int scaledMouseX = actualScreenwidth - blackBarWidth - 1;
+                    SDL_WarpMouseInWindow(window, scaledMouseX, scaledMouseY);
+                }
+            }
         }
         
         if(event.type == SDL_MOUSEWHEEL)
