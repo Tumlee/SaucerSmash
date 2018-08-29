@@ -1,3 +1,8 @@
+# Downloads
+
+To download SaucerSmash, simply grab the latest release at https://github.com/Tumlee/SaucerSmash/releases/
+Currently, only Windows binaries are available for download.
+
 # How  to build
 
 To build this project, simply navigate into the root directory of this project and execute 'dub'
@@ -13,11 +18,14 @@ To build this project, simply navigate into the root directory of this project a
 * If you are not Overdriving, hitting an enemy will KNOCK THEM AWAY.
 	You can take advantage of this by knocking enemies into one another.
 * Stun multiple enemies at once and destroy them in one COMBO to gain bonus points.
+* Don't hug the walls for safety! Touching the edges of the screen will result in your saucer
+    being STUNNED, leaving you vulnerable to attack.
 * If you see enemies with a target circling them, destroy them immediately.
 	If they are left to live, they will gain extra abilities and become EXTREMELY DANGEROUS.
 	
 # Configuration files and replays
 
 Configuration files and replays are stored in %appdata%\Saucersmash\ under Windows and under .local\share\SaucerSmash under Linux.
+You should not have to modify configuration files manually. Please use the in-game settings menu for that.
 Under Windows, Replay (.ssr) files can be 'opened with' Saucersmash, or clicked and dragged on top of SaucerSmash.exe, to play them back
 To do the same thing under Linux, simply run './saucersmash path/to/replay.ssr'
