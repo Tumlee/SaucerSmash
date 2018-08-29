@@ -1,6 +1,7 @@
 module magra.resource;
 
 import magra.globals;
+import magra.video;
 
 import derelict.sdl2.sdl;
 import derelict.sdl2.mixer;

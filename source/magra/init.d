@@ -72,7 +72,8 @@ class InitSettings
         enforce(renderer, "Failed to set up an SDL renderer.");
         
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "Bilinear");
-        SDL_RenderSetLogicalSize(renderer, screenWidth, screenHeight);
+        setLogicalRendererSize(renderer, screenWidth, screenHeight);
+        updateActualScreenDimensions();
 
         canvas.target = renderer;
     }

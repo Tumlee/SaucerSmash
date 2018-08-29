@@ -3,6 +3,7 @@ module magra.gameloop;
 import derelict.sdl2.sdl;
 import std.exception;
 import magra.globals;
+import magra.video;
 import magra.input;
 import magra.sound;
 

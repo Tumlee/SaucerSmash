@@ -11,6 +11,7 @@ public import magra.actor;
 public import magra.actorlist;
 public import magra.gameloop;
 
+public import magra.video;
 public import magra.canvas;
 public import magra.layer;
 public import magra.drawer;

@@ -14,7 +14,3 @@ Keyboard keyboard;
 ActorList actors;
 GameLoop gameLoop;
 TextBuffer textBuffer;
-
-//The SDL window and renderer.
-SDL_Renderer* renderer;
-SDL_Window* window;
